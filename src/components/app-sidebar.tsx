@@ -7,7 +7,6 @@ import {
   LayoutDashboard,
   LogOut,
   Mail,
-  MessagesSquare,
   NotebookPen,
 } from "lucide-react";
 
@@ -36,7 +35,6 @@ const ai = [
   { title: "Meeting Notes", url: "/notes", icon: NotebookPen },
   { title: "Task Planner", url: "/planner", icon: CalendarClock },
   { title: "Research", url: "/research", icon: BookOpenText },
-  { title: "Assistant Chat", url: "/chat", icon: MessagesSquare },
 ] as const;
 
 export function AppSidebar() {
