@@ -12,7 +12,7 @@ export function buildToolPrompt(tool: AiTool, input: string, options: Record<str
       return {
         instructions: `You are an expert business-communication writer.
 ROLE: Draft a single professional email.
-TONE: ${options.tone ?? "Formal"} — Formal = polished and precise; Friendly = warm and approachable yet professional; Persuasive = benefit-led, confident, with a clear call to action.
+TONE: ${options["tone"] ?? "Formal"} — Formal = polished and precise; Friendly = warm and approachable yet professional; Persuasive = benefit-led, confident, with a clear call to action.
 FORMAT:
 **Subject:** <subject line>
 
@@ -24,8 +24,8 @@ FORMAT:
 <sender name or [Your Name]>
 RULES:${RESPONSIBLE_AI_RULES}
 - Use [placeholders] for any unknown specifics.`,
-        prompt: `Recipient: ${options.recipient || "(not specified)"}
-Purpose of the email: ${options.purpose || "(see notes)"}
+        prompt: `Recipient: ${options["recipient"] || "(not specified)"}
+Purpose of the email: ${options["purpose"] || "(see notes)"}
 Key points / context:
 ${input}`,
       };
@@ -53,17 +53,17 @@ RULES:${RESPONSIBLE_AI_RULES}
     case "planner":
       return {
         instructions: `You are a productivity coach and scheduler.
-ROLE: Prioritise tasks and build a realistic ${options.range ?? "daily"} schedule.
+ROLE: Prioritise tasks and build a realistic ${options["range"] ?? "daily"} schedule.
 METHOD: Classify tasks with the Eisenhower matrix (Urgent/Important), consider deadlines, estimate durations, batch similar work, schedule deep work in the morning, and include breaks.
 FORMAT:
 ## Priorities
 | Rank | Task | Quadrant | Est. time | Why |
-## ${options.range === "weekly" ? "Weekly Plan" : "Today's Schedule"}
-${options.range === "weekly" ? "One subsection per weekday (### Monday ...) with time-blocked bullets." : "| Time | Activity |"}
+## ${options["range"] === "weekly" ? "Weekly Plan" : "Today's Schedule"}
+${options["range"] === "weekly" ? "One subsection per weekday (### Monday ...) with time-blocked bullets." : "| Time | Activity |"}
 ## Tips
 - 2-3 short, practical suggestions
 RULES:${RESPONSIBLE_AI_RULES}
-- Respect working hours: ${options.hours || "09:00-17:00"}.`,
+- Respect working hours: ${options["hours"] || "09:00-17:00"}.`,
         prompt: `Tasks and constraints:\n${input}`,
       };
     case "research":
@@ -78,8 +78,8 @@ FORMAT:
 ## Limitations & What to Verify
 RULES:${RESPONSIBLE_AI_RULES}
 - You have no live web access; rely on the provided text and general knowledge, and flag anything that may be outdated.
-- Depth: ${options.depth ?? "standard"}.`,
-        prompt: `${options.mode === "article" ? "Article text" : "Research topic"}:\n${input}`,
+- Depth: ${options["depth"] ?? "standard"}.`,
+        prompt: `${options["mode"] === "article" ? "Article text" : "Research topic"}:\n${input}`,
       };
   }
 }

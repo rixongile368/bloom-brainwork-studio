@@ -18,7 +18,6 @@ const tools = [
   { to: "/notes", icon: NotebookPen, title: "Summarise a meeting", text: "Actions, decisions, deadlines" },
   { to: "/planner", icon: CalendarClock, title: "Plan my day", text: "Prioritised schedule" },
   { to: "/research", icon: BookOpenText, title: "Research a topic", text: "Insights & recommendations" },
-  { to: "/chat", icon: MessagesSquare, title: "Ask the assistant", text: "Chat about anything work" },
 ] as const;
 
 function Dashboard() {

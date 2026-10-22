@@ -7,7 +7,7 @@ export const GATEWAY_URL = "https://ai.gateway.lovable.dev/v1";
 export const DEFAULT_MODEL = "openai/gpt-6-astra";
 
 export function getApiKey() {
-  const key = process.env.LOVABLE_API_KEY;
+  const key = process.env["LOVABLE_API_KEY"];
   if (!key) throw new Error("AI is not configured (missing LOVABLE_API_KEY).");
   return key;
 }
@@ -29,7 +29,7 @@ export function createResponsesCall(
     model: provider.responses(DEFAULT_MODEL),
     ...(instructions ? { instructions } : {}),
     messages,
-    abortSignal: request?.signal,
+    ...(request ? { abortSignal: request.signal } : {}),
     providerOptions: {
       openai: {
         store: false,
